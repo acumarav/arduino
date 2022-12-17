@@ -5,17 +5,18 @@ PushButton::PushButton(byte pin, bool isPullUp, bool internalPullUpActivated){
   this->pin = pin;
   this->isPullUp = isPullUp;
   this->internalPullUpActivated= internalPullUpActivated; 
+  lastTimeStateChanged = millis();
+  debounceDelay = 50;
 }
 
 void PushButton::init(){
   if(isPullUp && internalPullUpActivated){
       pinMode(pin, INPUT_PULLUP);     
   } else {
-    pinMode(pin, INPUT);
+      pinMode(pin, INPUT);
   }
-  lastTimeStateChanged = millis();
-  debounceDelay = 50;
-  state = digitalRead(state);
+  
+  state = digitalRead(pin);
 }
 
 
@@ -30,7 +31,6 @@ void PushButton::readState() {
       lastTimeStateChanged = timeNow;
     }
   }
- // state = digitalRead(pin);
 }
 
 bool PushButton::isPressed() {

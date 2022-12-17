@@ -1,7 +1,8 @@
 #include "Led.h"
 
-Led::Led(byte pin){
+  Led::Led(byte pin){
     this->pin = pin;
+    state = LOW;
   }
 
   void Led::init(){
@@ -18,9 +19,23 @@ Led::Led(byte pin){
   }
 
   void Led::on(){
+    state = HIGH;
     digitalWrite(pin, HIGH);
   }
 
   void Led::off(){
-     digitalWrite(pin, LOW);
+    state = LOW;
+    digitalWrite(pin, LOW);
+  }
+
+  void Led::toggle(){
+    if(state == LOW){
+      on();
+    } else {
+      off();
+    }    
+  }
+
+  bool Led::isPoweredOn(){
+    return (state == HIGH);
   }

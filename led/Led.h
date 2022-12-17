@@ -6,6 +6,7 @@
 class Led {
   private:
     byte pin;
+    byte state;
   public:
   Led(){} //do not use
   Led(byte pin);
@@ -15,6 +16,10 @@ class Led {
 
   void on();
   void off();
+
+  void toggle();
+  bool isPoweredOn();
+    
 };
 
 #endif

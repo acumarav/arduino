@@ -2,11 +2,11 @@
 
 
 void TrafficLight::init(){
+  updateLedsBrightBrightness();
   redLed.init();
   yellowLed.init();
   greenBlinker.initLed();
   button.init();  
-  potentiometer.init();
 
   transitionStart = 0;
   switchState("RED");
@@ -21,6 +21,7 @@ void TrafficLight::init(){
  * 2 sec blinking
  */
 void TrafficLight::update(){
+  updateLedsBrightBrightness();
 
   if(button.isPressed() && getState()=="RED"){
     transitionStart = millis(); 
@@ -44,22 +45,26 @@ void TrafficLight::update(){
   
 }
 
+void  TrafficLight::updateLedsBrightBrightness(){
+   ledsBrightness = potentiometer.getValue()/4;
+}
+
 void TrafficLight::switchState(String newState){
   this->state = newState;
   Serial.println("STATE:" +state);
 
   if(newState == "RED"){
-    redLed.on();
+    redLed.on(ledsBrightness);
     yellowLed.off();
     greenLed.off();  
   }
   if(newState == "YELLOW"){
-    yellowLed.on();
+    yellowLed.on(ledsBrightness);
     redLed.off();
     greenLed.off();   
   }
   if(newState == "GREEN"){
-    greenLed.on();
+    greenLed.on(ledsBrightness);
     redLed.off();
     yellowLed.off();   
   }
@@ -68,26 +73,7 @@ void TrafficLight::switchState(String newState){
     redLed.off();
     yellowLed.off(); 
   }
-//  switch(newState){
-//    case "RED":
-//      redLed.on();
-//      Serial.println("RED ON");
-//      break;
-//    case "YELLOW":
-//      yellowLed.on();
-//       Serial.println("YELLOW ON");
-//      break;
-//    case "GREEN":
-//     greenLed.on();
-//     Serial.println("GREEN ON");
-//     break;
-//    case "BLINK":
-//    default:
-//     Serial.println("BAD VALUE");
-//    break;
-//    ;
-//  }
-  
+ 
 }
 
 boolean TrafficLight::isStarted(){

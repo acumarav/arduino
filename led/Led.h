@@ -15,6 +15,7 @@ class Led {
   void init(byte defaultState);
 
   void on();
+  void on(byte brightness);
   void off();
 
   void toggle();

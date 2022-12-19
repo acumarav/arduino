@@ -22,6 +22,10 @@
     state = HIGH;
     digitalWrite(pin, HIGH);
   }
+  void Led::on(byte brightness){
+    state = HIGH;
+    analogWrite(pin, brightness);
+  }
 
   void Led::off(){
     state = LOW;

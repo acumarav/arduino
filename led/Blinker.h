@@ -10,6 +10,8 @@ class Blinker {
     unsigned long lastTimeBlinked;
     unsigned long blinkDelay;
 
+    
+
     void toggleLed();
 
   public:

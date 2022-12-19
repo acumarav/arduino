@@ -4,6 +4,7 @@ Potentiometer::Potentiometer(byte pin){
   this->pin=pin;
 }
 
-void Potentiometer::init(){
+int Potentiometer::getValue(){
+  return analogRead(pin);
   
 }

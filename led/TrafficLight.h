@@ -18,11 +18,13 @@ class TrafficLight {
     PushButton button;
     Potentiometer potentiometer;
     unsigned long transitionStart;
+    byte ledsBrightness;
 
     bool isStarted();
     String state;
 
     void switchState(String state);
+    void updateLedsBrightBrightness();
     
 
   public:

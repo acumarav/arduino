@@ -39,6 +39,8 @@ void loop(){
   //test_loop();  
   trafficLight.update();
 
+  Serial.println(potentiometer.getValue());
+
   if(button.isPressed()){
     Serial.println("Button is pressed");
   } else {

@@ -11,7 +11,7 @@ class Potentiometer {
     Potentiometer(){}//do not use
     Potentiometer(byte pin);
 
-    void init();
+    int getValue();
    
 };
 #endif
